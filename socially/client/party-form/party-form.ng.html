@@ -1,0 +1,20 @@
+<!--<form (submit)="add($event)" [ng-form-model]="partyForm">-->
+
+    <!--<label for="name">Name</label>-->
+    <!--<input type="text" id="name" ng-control="name">-->
+
+    <!--<label for="description">Description</label>-->
+    <!--<input type="text" id="description" ng-control="description">-->
+
+    <!--<button type="submit">Add</button>-->
+<!--</form>-->
+
+<form>
+    <label for="name">Name</label>
+    <input type="text" #name>
+
+    <label for="description">Description</label>
+    <input type="text" #desc>
+
+    <button (click)="addParty(name.value, desc.value)">Add</button>
+</form>
