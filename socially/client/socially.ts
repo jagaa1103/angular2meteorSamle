@@ -15,12 +15,16 @@ import {PartyForm} from 'client/party-form/party-form';
 
 class Socially {
 
+    //party: IParty[];
+
     constructor(){
         Tracker.autorun(zone.bind(() => {
             this.parties = Parties.find().fetch();
         }));
     }
-
+    remove(party){
+        Parties.remove(party._id);
+    }
 }
 
 bootstrap(Socially);
