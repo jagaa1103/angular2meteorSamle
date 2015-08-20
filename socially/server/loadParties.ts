@@ -3,7 +3,7 @@
  */
 
 Meteor.startup(function () {
-    if (Parties.find().count() === 0) {
+    if (PartiesData.find().count() === 0) {
 
         var parties = [
             {'name': 'Dubstep-Free Zone',
@@ -15,6 +15,6 @@ Meteor.startup(function () {
         ];
 
         for (var i = 0; i < parties.length; i++)
-            Parties.insert(parties[i]);
+            PartiesData.insert(parties[i]);
     }
 });

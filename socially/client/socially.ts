@@ -1,30 +1,28 @@
 ///<reference path="../typings/typings.d.ts"/>
 
-import {Component, NgFor, View, bootstrap} from 'angular2/angular2';
-import {PartyForm} from 'client/party-form/party-form';
+import {Component, View, bind, bootstrap} from 'angular2/angular2';
+import {routerInjectables, routerDirectives, Router, RouteConfig} from 'angular2/router';
+import {LocationStrategy, Location, HashLocationStrategy } from 'angular2/router';
 
+
+import {PartiesCmp} from 'client/parties/parties';
+import {PartyDetailsCmp} from 'client/party-details/party-details';
 
 @Component({
     selector: 'socially'
 })
 @View({
-    //template: "<p>Hello World!</p>"
-    templateUrl: 'client/socially.ng.html',
-    directives: [NgFor, PartyForm]
+    template: '<router-outlet></router-outlet>',
+    directives: [routerDirectives]
 })
+
+@RouteConfig([
+    {path: '/',  component: PartiesCmp},
+    {path: '/party/:partyId', as: 'party-details', component: PartyDetailsCmp}
+])
 
 class Socially {
 
-    //party: IParty[];
-
-    constructor(){
-        Tracker.autorun(zone.bind(() => {
-            this.parties = Parties.find().fetch();
-        }));
-    }
-    remove(party){
-        Parties.remove(party._id);
-    }
 }
 
-bootstrap(Socially);
+bootstrap(Socially, [routerInjectables, bind(LocationStrategy).toClass(HashLocationStrategy)]);

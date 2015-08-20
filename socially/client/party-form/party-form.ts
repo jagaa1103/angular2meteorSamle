@@ -17,7 +17,7 @@ export class PartyForm {
 
     addParty(name: String, desc: String) {
         alert("clicked :" + name +", " + desc);
-        Parties.insert({
+        PartiesData.insert({
             name: name,
             description: desc
         });
